@@ -15,6 +15,10 @@ import java.util.Arrays;
  * 2019/6/30 16:59
  */
 public final class BencodeByteArray implements IBencode, Comparable<BencodeByteArray> {
+    final private static BencodeByteArray BENCODE_BYTE_ARRAY = new BencodeByteArray(new byte[0]);
+    public static BencodeByteArray empty(){
+        return BENCODE_BYTE_ARRAY;
+    }
     private byte[] data;
 
     @SuppressWarnings("WeakerAccess")

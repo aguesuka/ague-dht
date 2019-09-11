@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import static cc.aguesuka.bitfind.bencode.Bencode.getCharset;
 
 /**
  * @author yangmingyuxing
@@ -41,12 +40,12 @@ class BencodeEncoder {
 
     private void putInteger(Number i) {
         writeByte(BencodeToken.INT);
-        write(i.toString().getBytes(getCharset()));
+        write(i.toString().getBytes(Bencode.getCharset()));
         writeByte(BencodeToken.END);
     }
 
     private void putString(String s) {
-        putByteArray(s.getBytes(getCharset()));
+        putByteArray(s.getBytes(Bencode.getCharset()));
     }
 
     private void putMap(Map<?, ?> map) {
@@ -89,7 +88,7 @@ class BencodeEncoder {
     }
 
     private void putByteArray(byte[] bytes) {
-        write(Integer.toString(bytes.length).getBytes(getCharset()));
+        write(Integer.toString(bytes.length).getBytes(Bencode.getCharset()));
         writeByte(BencodeToken.SPLIT);
         write(bytes);
     }

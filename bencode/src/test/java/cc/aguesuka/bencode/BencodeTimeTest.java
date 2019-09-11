@@ -1,6 +1,6 @@
-package cc.aguesuka.bitfind.bencode;
+package cc.aguesuka.bencode;
 
-import cc.aguesuka.bitfind.bencode.util.HexUtil;
+import cc.aguesuka.bencode.util.HexUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package cc.aguesuka.bitfind.bencode.util;
+package cc.aguesuka.bencode.util;
 
 import org.junit.Test;
 

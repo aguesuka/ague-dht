@@ -1,6 +1,6 @@
-package cc.aguesuka.bitfind.bencode;
+package cc.aguesuka.bencode;
 
-import cc.aguesuka.bitfind.bencode.util.HexUtil;
+import cc.aguesuka.bencode.util.HexUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,8 +64,8 @@ public class BencodeTest {
         bList.addLong(1);
         list.add(new HashMap<>());
         bList.add(new BencodeMap());
-        list.add(new byte[]{1,2,3});
-        bList.addByteArray(new byte[]{1,2,3});
+        list.add(new byte[]{1, 2, 3});
+        bList.addByteArray(new byte[]{1, 2, 3});
         Assert.assertArrayEquals(Bencode.toBytes(list), Bencode.toBytes(bList));
     }
 
