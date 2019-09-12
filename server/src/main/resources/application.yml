@@ -1,0 +1,22 @@
+logging:
+  level:
+    root: warn
+  file: logs/log.log
+
+spring:
+  datasource:
+    # 数据库与项目独立,所以使用绝对路径
+    url: jdbc:sqlite:D:\F\Document\000000j\bit-finder\bitfind-service\src\database\database.db
+  aop:
+    auto: true
+    proxy-target-class: true
+dht:
+  bootstrap-nodes:
+    - router.bittorrent.com:6881
+    - dht.transmissionbt.com:6881
+    - router.utorrent.com:6881
+    - dht.aelitis.com:6881
+    - localhost:8888
+  ip-for-bep0042: 223.155.69.210
+  join-dht-interval: 3000
+  join-dht-count: 300
