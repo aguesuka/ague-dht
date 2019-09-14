@@ -23,9 +23,10 @@ public class Bep0042ImplTest {
 
         testChangeId("43.213.53.83", "e56f6cbf5b7c4be0237986d5243b87aa6d51305f", false);
         testChangeId("43.213.53.82", "e56f6cbf5b7c4be0237986d5243b87aa6d51305a", false);
+        testChangeId("167.179.110.63", "DCCD90DA296D3E62E0961234BF39A63F895EF126", true);
     }
 
-    public void testChangeId(String host, String id, boolean isEquals) throws UnknownHostException {
+    private void testChangeId(String host, String id, boolean isEquals) throws UnknownHostException {
         byte[] src = HexUtil.decode(id);
         byte[] result = Bep0042Impl.changeId(host, src);
         if (isEquals) {

@@ -72,7 +72,7 @@ public class DhtHandler implements NioHandler {
             }
 
             KrpcMessage krpcMessage = new KrpcMessage(message, address);
-            log.info("send message `{}`", krpcMessage);
+            log.info("recv message `{}`", krpcMessage);
             record.doRecord(ActionEnum.DHT_RECV_LENGTH, buffer.position() / 1024.0);
             return krpcMessage;
         } catch (IOException | RuntimeException e) {
@@ -89,7 +89,7 @@ public class DhtHandler implements NioHandler {
             buffer.flip();
             channel.send(buffer, message.getAddress());
             if (buffer.hasRemaining()) {
-                throw new DhtHandlerException("send message fail:buff has ramaining");
+                throw new DhtHandlerException("send message fail:buff has remaining");
             }
             log.info("send message `{}`", message);
             record.doRecord(ActionEnum.DHT_SEND_SUCCESS);
@@ -102,25 +102,27 @@ public class DhtHandler implements NioHandler {
 
     @Override
     public void doHandler(SelectionKey key) {
-        if (key.isReadable()) {
-            KrpcMessage krpcMessage = readMessage(key);
-            if (krpcMessage != null) {
-                onReadMessage(krpcMessage);
-            }
-        } else if (key.isWritable()) {
-            for (IDhtHandlerChain chain : handlerChains) {
-                if (chain.isWriteAble()) {
-                    KrpcMessage message = chain.getMessage();
-                    sendMessage(key, message);
-                    log.info("send message `{}`", message);
-                    break;
+        try {
+            if (key.isReadable()) {
+                KrpcMessage krpcMessage = readMessage(key);
+                if (krpcMessage != null) {
+                    onReadMessage(krpcMessage);
+                }
+            } else if (key.isWritable()) {
+                for (IDhtHandlerChain chain : handlerChains) {
+                    if (chain.isWriteAble()) {
+                        KrpcMessage message = chain.getMessage();
+                        sendMessage(key, message);
+                        break;
+                    }
                 }
             }
-        }
-        if (handlerChains.stream().anyMatch(IDhtHandlerChain::isWriteAble)) {
-            key.interestOps(SelectionKey.OP_WRITE | SelectionKey.OP_READ);
-        } else {
-            key.interestOps(SelectionKey.OP_READ);
+        } finally {
+            if (handlerChains.stream().anyMatch(IDhtHandlerChain::isWriteAble)) {
+                key.interestOps(SelectionKey.OP_WRITE | SelectionKey.OP_READ);
+            } else {
+                key.interestOps(SelectionKey.OP_READ);
+            }
         }
     }
 

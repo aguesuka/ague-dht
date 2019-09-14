@@ -6,7 +6,7 @@ logging:
 spring:
   datasource:
     # 数据库与项目独立,所以使用绝对路径
-    url: jdbc:sqlite:D:\F\Document\000000j\bit-finder\bitfind-service\src\database\database.db
+    url: jdbc:sqlite:C:\java\bt-find\server\src\sql\database
   aop:
     auto: true
     proxy-target-class: true
@@ -19,4 +19,4 @@ dht:
     - localhost:8888
   ip-for-bep0042: 223.155.69.210
   join-dht-interval: 3000
-  join-dht-count: 300
+  join-dht-count: 30000

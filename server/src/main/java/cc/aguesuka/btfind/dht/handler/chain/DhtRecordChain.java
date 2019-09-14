@@ -63,6 +63,11 @@ public class DhtRecordChain implements IDhtHandlerChain, IDhtQueryChain, IDhtUnk
     }
 
     @Override
+    public void onQuery(KrpcMessage query) {
+        record.doRecord(DHT_RECV_QUERY);
+    }
+
+    @Override
     public void onUnknownType(KrpcMessage message) {
         record.doRecord(DHT_RECV_UNKNOWN_TYPE);
     }

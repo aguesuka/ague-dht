@@ -62,6 +62,7 @@ public class KrpcToken {
     public static final String FIND_NODE = "find_node";
     public static final String GET_PEERS = "get_peers";
     public static final String ANNOUNCE_PEER = "announce_peer";
+    public static final String SAMPLE_INFOHASHES = "sample_infohashes";
     public static final String ID = "id";
     public static final String TARGET = "target";
     public static final String NODES = "nodes";

@@ -7,6 +7,7 @@ import cc.aguesuka.btfind.dht.handler.IDhtHandlerChain;
 import cc.aguesuka.btfind.util.DhtServerConfig;
 import cc.aguesuka.btfind.util.record.ActionEnum;
 import cc.aguesuka.btfind.util.record.ActionRecord;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ import java.util.*;
  * @author :yangmingyuxing
  * 2019/9/12 13:37
  */
+@Slf4j
 @Component
 public class JoinDhtChain implements IDhtHandlerChain {
     private Queue<SocketAddress> waitSend = new LinkedList<>();
@@ -94,18 +96,18 @@ public class JoinDhtChain implements IDhtHandlerChain {
 
     @Override
     public void onResponse(KrpcMessage response) {
-        byte[] senderId = response.getMessage().getBencodeMap(KrpcToken.RESPONSES_MAP).getByteArray(KrpcToken.ID);
+        BencodeMap responseMap = response.getMessage().getBencodeMap(KrpcToken.RESPONSES_MAP);
+        byte[] senderId = responseMap.getByteArray(KrpcToken.ID);
         if (Arrays.equals(senderId, config.getSelfNodeId())) {
             blackList.add(response.getAddress());
             return;
-
         }
         goodNode.add(response.getAddress());
 
         byte[] nodes = response.nodes();
         byte[] id = new byte[KrpcToken.ID_LENGTH];
         byte[] ip = new byte[4];
-        if(nodes == null){
+        if (nodes == null) {
             blackList.add(response.getAddress());
             return;
         }

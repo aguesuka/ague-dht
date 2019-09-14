@@ -2,9 +2,11 @@ package cc.aguesuka.btfind.connection;
 
 import cc.aguesuka.btfind.dht.handler.DhtHandler;
 import cc.aguesuka.btfind.util.DhtServerConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.DatagramChannel;
@@ -17,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @author :yangmingyuxing
  * 2019/9/9 13:39
  */
+@Slf4j
 @Component
 public class Bootstrap {
     private NioEventLoop nioEventLoop;
@@ -46,10 +49,12 @@ public class Bootstrap {
         udpChannel.bind(new InetSocketAddress(config.getDhtPort()))
                 .configureBlocking(false);
         udpChannel.register(nioEventLoop.getSelector(), SelectionKey.OP_WRITE | SelectionKey.OP_READ, dhtHandler);
+        log.error("sever start");
         threadPoolExecutor.execute(nioEventLoop::loop);
     }
 
 
+    @PreDestroy
     public void end() throws IOException, InterruptedException {
         nioEventLoop.close();
         threadPoolExecutor.shutdown();
