@@ -24,16 +24,22 @@ import java.util.concurrent.TimeUnit;
 public class NioEventLoop implements AutoCloseable {
     @Getter
     @Setter
-    private boolean isLoop;
+    private volatile boolean isLoop;
     private CountDownLatch countDownLatch;
     private ActionRecord record;
     @Getter
     private Selector selector;
-
     public NioEventLoop(ActionRecord record) {
         this.record = record;
     }
 
+    private void stop() {
+        log.error("stop loop at:");
+        for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+            log.error(element.toString());
+        }
+        isLoop = false;
+    }
 
     void init() throws IOException {
         this.selector = Selector.open();
@@ -44,8 +50,14 @@ public class NioEventLoop implements AutoCloseable {
         countDownLatch = new CountDownLatch(1);
         isLoop = true;
         while (isLoop) {
-            select();
+            try {
+                select();
+            } catch (Throwable e) {
+                log.error(e.getMessage(), e);
+                stop();
+            }
         }
+        log.error("loop stop");
         countDownLatch.countDown();
     }
 
@@ -56,7 +68,7 @@ public class NioEventLoop implements AutoCloseable {
         try {
             selectCount = selector.select(100);
         } catch (IOException e) {
-            isLoop = false;
+            stop();
             log.error(e.getMessage(), e);
             return;
         }
@@ -98,8 +110,9 @@ public class NioEventLoop implements AutoCloseable {
 
     @Override
     public void close() throws InterruptedException {
-        isLoop = false;
+        stop();
         selector.wakeup();
         countDownLatch.await(1000, TimeUnit.SECONDS);
+        log.error("loop closed");
     }
 }

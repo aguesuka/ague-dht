@@ -55,7 +55,10 @@ public class DhtServerConfig {
      * 加入dht任务每周期的请求数
      */
     private int joinDhtCount = 1000;
-
+    /**
+     * join dht 保存的最大地址数量
+     */
+    private int joinDhtMaxSize = 10000;
     /**
      * dht起始节点,加入dht网络时使用
      *

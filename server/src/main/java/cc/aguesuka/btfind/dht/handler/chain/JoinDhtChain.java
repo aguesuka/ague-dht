@@ -26,6 +26,7 @@ import java.util.*;
 @Slf4j
 @Component
 public class JoinDhtChain implements IDhtHandlerChain {
+
     private Queue<SocketAddress> waitSend = new LinkedList<>();
     private Set<SocketAddress> blackList = new HashSet<>();
     private Set<SocketAddress> allNode = new HashSet<>();
@@ -44,6 +45,13 @@ public class JoinDhtChain implements IDhtHandlerChain {
         this.config = config;
     }
 
+    private <T, E extends T> void addQueue(Queue<T> queue, E element) {
+        if (queue.size() < config.getJoinDhtMaxSize()) {
+            queue.remove();
+        }
+        queue.add(element);
+    }
+
     private <T, E extends T> void moveUntil(Collection<T> target, Queue<E> src, int count) {
         while (target.size() < count && !src.isEmpty()) {
             target.add(src.remove());
@@ -53,7 +61,7 @@ public class JoinDhtChain implements IDhtHandlerChain {
     private void updateQueue() {
         int count = config.getJoinDhtCount();
         moveUntil(waitSend, newNode, count);
-        if (waitSend.size() > 0) {
+        if (waitSend.size() > 0 && allNode.size() <= config.getJoinDhtMaxSize()) {
             return;
         }
         allNode.clear();
@@ -102,7 +110,7 @@ public class JoinDhtChain implements IDhtHandlerChain {
             blackList.add(response.getAddress());
             return;
         }
-        goodNode.add(response.getAddress());
+        addQueue(goodNode, response.getAddress());
 
         byte[] nodes = response.nodes();
         byte[] id = new byte[KrpcToken.ID_LENGTH];
@@ -125,7 +133,7 @@ public class JoinDhtChain implements IDhtHandlerChain {
                 record.doRecord(ActionEnum.DHT_GET_NEW_ADDRESS);
 
                 allNode.add(address);
-                newNode.add(address);
+                addQueue(newNode, address);
             } catch (UnknownHostException e) {
                 throw new RuntimeException(e);
             }

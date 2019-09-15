@@ -25,15 +25,6 @@ public class Bootstrap {
     private NioEventLoop nioEventLoop;
     private DhtServerConfig config;
     private DhtHandler dhtHandler;
-    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-            1,
-            1,
-            0L,
-            TimeUnit.MILLISECONDS,
-            new SynchronousQueue<>(),
-            o -> new Thread(o, "nioEventLoop")
-    );
-
     @Autowired
     public Bootstrap(NioEventLoop nioEventLoop,
                      DhtServerConfig config,
@@ -50,14 +41,14 @@ public class Bootstrap {
                 .configureBlocking(false);
         udpChannel.register(nioEventLoop.getSelector(), SelectionKey.OP_WRITE | SelectionKey.OP_READ, dhtHandler);
         log.error("sever start");
-        threadPoolExecutor.execute(nioEventLoop::loop);
+        nioEventLoop.loop();
+        log.error("sever stop");
     }
 
 
     @PreDestroy
     public void end() throws IOException, InterruptedException {
         nioEventLoop.close();
-        threadPoolExecutor.shutdown();
         nioEventLoop.getSelector().close();
     }
 }

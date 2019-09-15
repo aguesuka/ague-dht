@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class GetPeerChain implements IDhtQueryChain {
+public class SaveInfoHashChain implements IDhtQueryChain {
 
     private InfoHashDao infoHashDao;
 
     @Autowired
-    public GetPeerChain(InfoHashDao infoHashDao) {
+    public SaveInfoHashChain(InfoHashDao infoHashDao) {
         this.infoHashDao = infoHashDao;
     }
 
