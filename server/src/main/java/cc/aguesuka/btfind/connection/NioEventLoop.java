@@ -34,9 +34,9 @@ public class NioEventLoop implements AutoCloseable {
     }
 
     private void stop() {
-        log.error("stop loop at:");
+        log.info("stop loop at:");
         for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
-            log.error(element.toString());
+            log.info(element.toString());
         }
         isLoop = false;
     }
