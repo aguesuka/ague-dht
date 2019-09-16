@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
+ * save hash info when other peer query server
+ * you can implement it you self
+ *
  * @author :yangmingyuxing
  * 2019/9/12 16:43
  */
@@ -36,7 +39,7 @@ public class SaveInfoHashChain implements IDhtQueryChain {
 
     @Override
     public void onGetPeer(KrpcMessage query) {
-
+        // ignore
     }
 
     @Override

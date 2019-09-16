@@ -11,11 +11,10 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
+ * bootstrap
+ *
  * @author :yangmingyuxing
  * 2019/9/9 13:39
  */
@@ -25,6 +24,7 @@ public class Bootstrap {
     private NioEventLoop nioEventLoop;
     private DhtServerConfig config;
     private DhtHandler dhtHandler;
+
     @Autowired
     public Bootstrap(NioEventLoop nioEventLoop,
                      DhtServerConfig config,
@@ -34,6 +34,11 @@ public class Bootstrap {
         this.dhtHandler = dhtHandler;
     }
 
+    /**
+     * start dht network
+     *
+     * @throws IOException If an I/O error occurs
+     */
     public void start() throws IOException {
         nioEventLoop.init();
         DatagramChannel udpChannel = DatagramChannel.open();

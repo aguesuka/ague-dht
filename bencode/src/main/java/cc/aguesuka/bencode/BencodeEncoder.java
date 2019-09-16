@@ -7,6 +7,9 @@ import java.util.Map;
 
 
 /**
+ * java object to bencode byte array
+ * todo Circular reference check
+ *
  * @author yangmingyuxing
  */
 class BencodeEncoder {

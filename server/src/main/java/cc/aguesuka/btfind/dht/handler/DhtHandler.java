@@ -87,6 +87,7 @@ public class DhtHandler implements NioHandler {
             buffer.clear();
             message.getMessage().writeToBuffer(buffer);
             buffer.flip();
+            // fixme DatagramChannelImpl#send0 throw exception
             channel.send(buffer, message.getAddress());
             if (buffer.hasRemaining()) {
                 throw new DhtHandlerException("send message fail:buff has remaining");
@@ -118,6 +119,7 @@ public class DhtHandler implements NioHandler {
                 }
             }
         } finally {
+            // update Operation-set
             if (handlerChains.stream().anyMatch(IDhtHandlerChain::isWriteAble)) {
                 key.interestOps(SelectionKey.OP_WRITE | SelectionKey.OP_READ);
             } else {

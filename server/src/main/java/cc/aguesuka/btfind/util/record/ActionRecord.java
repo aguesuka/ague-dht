@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * aggregation log
+ *
  * @author :yangmingyuxing
  * 2019/9/4 17:37
  */
@@ -57,7 +59,7 @@ public class ActionRecord {
         if (sumMap.containsKey(action)) {
             sumMap.put(action, sumMap.get(action) + count);
         } else {
-            sumMap.put(action,  count);
+            sumMap.put(action, count);
         }
     }
 

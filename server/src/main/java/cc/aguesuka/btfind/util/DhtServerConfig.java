@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * config
+ *
  * @author :yangmingyuxing
  * 2019/9/9 12:27
  */
@@ -59,6 +61,7 @@ public class DhtServerConfig {
      * join dht 保存的最大地址数量
      */
     private int joinDhtMaxSize = 10000;
+
     /**
      * dht起始节点,加入dht网络时使用
      *

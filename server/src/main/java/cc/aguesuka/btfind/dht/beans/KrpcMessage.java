@@ -25,6 +25,11 @@ public class KrpcMessage {
         return message.getString(KrpcToken.QUERY);
     }
 
+    /**
+     * find_nodes or get_peer response nodes
+     *
+     * @return byte array length integer multiple of 26(ipv4); id(20) + host(4) + port(2)
+     */
     public byte[] nodes() {
         return message.getBencodeMap(KrpcToken.RESPONSES_MAP).getByteArray(KrpcToken.NODES);
     }

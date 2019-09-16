@@ -46,7 +46,7 @@ public class JoinDhtChain implements IDhtHandlerChain {
     }
 
     private <T, E extends T> void addQueue(Queue<T> queue, E element) {
-        if (queue.size() < config.getJoinDhtMaxSize()) {
+        if (queue.size() >= config.getJoinDhtMaxSize()) {
             queue.remove();
         }
         queue.add(element);

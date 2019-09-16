@@ -16,6 +16,9 @@ import java.util.Queue;
 import java.util.Random;
 
 /**
+ * http://www.bittorrent.org/beps/bep_0005.html
+ * response message for other peer query the server
+ *
  * @author :yangmingyuxing
  * 2019/9/11 21:56
  */
@@ -35,6 +38,11 @@ public class DhtMainChain implements IDhtQueryChain, IDhtHandlerChain {
         messagesQueue.add(message);
     }
 
+    /**
+     * Maximum weight
+     *
+     * @return 10
+     */
     @Override
     public int weights() {
         return 10;
