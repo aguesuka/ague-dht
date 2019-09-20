@@ -20,6 +20,7 @@ mvn package
 java -jar ./server/target/server-1.1.jar
 ```
 ## 配置
+注意:默认的配置不能没有保存搜索结果
 默认的数据库是sqlite,路径为```./server/sql/database``` ;需要在``` ./server/src/main/resources/application.yml``` 中设置```spring.datasource.url```的属性,推荐使用绝对路径.
 其他配置参考类```cc.aguesuka.btfind.util.DhtServerConfig```;
   
