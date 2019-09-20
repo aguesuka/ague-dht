@@ -21,11 +21,11 @@ public final class BencodeByteArray implements IBencode, Comparable<BencodeByteA
     }
     private byte[] data;
 
-    @SuppressWarnings("WeakerAccess")
     public BencodeByteArray(byte[] data) {
         this.data = data.clone();
     }
 
+    @SuppressWarnings("WeakerAccess")
     public byte[] getBytes() {
         return data.clone();
     }

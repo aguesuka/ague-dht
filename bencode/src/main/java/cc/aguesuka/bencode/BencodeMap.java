@@ -15,6 +15,7 @@ public final class BencodeMap extends LinkedHashMap<String, IBencode> implements
         putByteArray(key, value.getBytes(Bencode.getCharset()));
     }
 
+    @SuppressWarnings("unused")
     public void putLong(String key, long value) {
         put(key, new BencodeInteger(value));
     }

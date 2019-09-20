@@ -13,7 +13,6 @@ public final class BencodeInteger extends Number implements IBencode {
         value = Long.parseLong(val);
     }
 
-    @SuppressWarnings("WeakerAccess")
     public BencodeInteger(long val) {
         value = val;
     }
