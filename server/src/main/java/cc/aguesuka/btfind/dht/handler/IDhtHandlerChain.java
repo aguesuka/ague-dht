@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * @author :yangmingyuxing
  * 2019/9/11 19:34
  */
-public interface IDhtHandlerChain {
+public interface IDhtHandlerChain extends IBaseDhtChain {
 
     /**
      * 权重,权重高的优先处理

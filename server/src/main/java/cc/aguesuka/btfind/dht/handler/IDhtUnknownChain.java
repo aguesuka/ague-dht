@@ -6,7 +6,7 @@ import cc.aguesuka.btfind.dht.beans.KrpcMessage;
  * @author :yangmingyuxing
  * 2019/9/11 19:49
  */
-public interface IDhtUnknownChain {
+public interface IDhtUnknownChain extends IBaseDhtChain{
     /**
      * 收到未知类型的消息
      *

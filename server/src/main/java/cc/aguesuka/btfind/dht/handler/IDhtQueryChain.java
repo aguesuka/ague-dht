@@ -6,7 +6,7 @@ import cc.aguesuka.btfind.dht.beans.KrpcMessage;
  * @author :yangmingyuxing
  * 2019/9/11 20:00
  */
-public interface IDhtQueryChain {
+public interface IDhtQueryChain extends IBaseDhtChain{
     /**
      * 收到请求时
      *

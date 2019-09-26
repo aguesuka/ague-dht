@@ -51,10 +51,17 @@ public class DhtHandler implements NioHandler {
     public void init() {
         handlerChains = ac.getBeansOfType(IDhtHandlerChain.class).values()
                 .stream()
+                .filter(IBaseDhtChain::enable)
                 .sorted(Comparator.comparingInt(IDhtHandlerChain::weights).reversed())
                 .collect(Collectors.toList());
-        queryChains = ac.getBeansOfType(IDhtQueryChain.class).values();
-        unknownChains = ac.getBeansOfType(IDhtUnknownChain.class).values();
+        queryChains = ac.getBeansOfType(IDhtQueryChain.class).values()
+                .stream()
+                .filter(IBaseDhtChain::enable)
+                .collect(Collectors.toList());
+        unknownChains = ac.getBeansOfType(IDhtUnknownChain.class).values()
+                .stream()
+                .filter(IBaseDhtChain::enable)
+                .collect(Collectors.toList());
     }
 
     private KrpcMessage readMessage(SelectionKey key) {
