@@ -34,4 +34,4 @@ bencodeObject.writeToBuffer(ByteBuff)
 - ```BencodeParser``` 使用非递归实现了byte[] 转对象.  
 - ```BencodeEncoder``` 使用递归实现了对象转byte[].  
 
-如果需要最简单的实现,可以只拷贝这两个类到你的项目
+如果需要最简单的实现,可以只拷贝这两个类到你的项目,并将BencodeParser中的集合容改为java.util的集合
