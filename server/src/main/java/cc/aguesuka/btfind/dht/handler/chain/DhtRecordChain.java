@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 import static cc.aguesuka.btfind.util.record.ActionEnum.*;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/12 13:27
  */
 @Component
 public class DhtRecordChain implements IDhtHandlerChain, IDhtQueryChain, IDhtUnknownChain {
-    private ActionRecord record;
+    private final ActionRecord record;
 
     @Autowired
     public DhtRecordChain(ActionRecord record) {

@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/3 17:46
  */
 public class IBencodeTest {
@@ -32,7 +32,7 @@ public class IBencodeTest {
     public void setUp() throws Exception {
 
         String dataFile = "bencode.txt";
-        URL resource = BencodeTimeTest.class.getClassLoader().getResource(dataFile);
+        URL resource = this.getClass().getClassLoader().getResource(dataFile);
         Objects.requireNonNull(resource);
         List<String> lines = Files.readAllLines(Paths.get(resource.toURI()));
         bencodeData = lines.stream().map(HexUtil::decode).collect(Collectors.toList());

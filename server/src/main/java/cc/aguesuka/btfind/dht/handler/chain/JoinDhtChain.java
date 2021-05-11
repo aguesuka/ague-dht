@@ -20,23 +20,23 @@ import java.security.SecureRandom;
 import java.util.*;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/12 13:37
  */
 @Slf4j
 @Component
 public class JoinDhtChain implements IDhtHandlerChain {
 
-    private Queue<SocketAddress> waitSend = new LinkedList<>();
-    private Set<SocketAddress> blackList = new HashSet<>();
-    private Set<SocketAddress> allNode = new HashSet<>();
-    private Queue<SocketAddress> newNode = new LinkedList<>();
-    private Queue<SocketAddress> goodNode = new LinkedList<>();
+    private final Queue<SocketAddress> waitSend = new LinkedList<>();
+    private final Set<SocketAddress> blackList = new HashSet<>();
+    private final Set<SocketAddress> allNode = new HashSet<>();
+    private final Queue<SocketAddress> newNode = new LinkedList<>();
+    private final Queue<SocketAddress> goodNode = new LinkedList<>();
 
-    private ActionRecord record;
-    private Random random = new SecureRandom();
-    private byte[] target = new byte[20];
-    private DhtServerConfig config;
+    private final ActionRecord record;
+    private final Random random = new SecureRandom();
+    private final byte[] target = new byte[20];
+    private final DhtServerConfig config;
     private long lastTime;
 
     @Autowired

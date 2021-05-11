@@ -6,14 +6,14 @@ import java.util.Deque;
 import java.util.Objects;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/3 20:09
  */
 class BencodeParser {
     BencodeMap rootMap = new BencodeMap();
     private ByteBuffer buff;
     private boolean isReadMap = true;
-    private Deque<IBencodeContainer> stack = new ArrayDeque<>();
+    private final Deque<IBencodeContainer<?>> stack = new ArrayDeque<>();
 
     BencodeParser() {
     }

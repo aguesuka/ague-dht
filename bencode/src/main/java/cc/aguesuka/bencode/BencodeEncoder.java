@@ -10,11 +10,11 @@ import java.util.Map;
  * java object to bencode byte array
  * todo Circular reference check
  *
- * @author yangmingyuxing
+ * @author aguesuka
  */
 class BencodeEncoder {
     private Object bencode;
-    private ByteArrayOutputStream outputStream;
+    private final ByteArrayOutputStream outputStream;
 
     BencodeEncoder() {
         this.outputStream = new ByteArrayOutputStream();

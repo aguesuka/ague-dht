@@ -3,7 +3,7 @@ package cc.aguesuka.bencode;
 import java.util.LinkedHashMap;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/6/30 16:57
  */
 public final class BencodeMap extends LinkedHashMap<String, IBencode> implements IBencode, IBencodeContainer<String> {

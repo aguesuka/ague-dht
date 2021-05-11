@@ -1,7 +1,7 @@
 package cc.aguesuka.bencode;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/6/30 17:25
  */
 interface IBencodeContainer<T> {

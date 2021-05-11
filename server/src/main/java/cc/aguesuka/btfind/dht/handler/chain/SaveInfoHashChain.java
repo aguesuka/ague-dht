@@ -13,14 +13,14 @@ import org.springframework.stereotype.Component;
  * save hash info when other peer query server
  * you can implement it you self
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/12 16:43
  */
 @Slf4j
 @Component
 public class SaveInfoHashChain implements IDhtQueryChain {
 
-    private InfoHashDao infoHashDao;
+    private final InfoHashDao infoHashDao;
 
     @Autowired
     public SaveInfoHashChain(InfoHashDao infoHashDao) {

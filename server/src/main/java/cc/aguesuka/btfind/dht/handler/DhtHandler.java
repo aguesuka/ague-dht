@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/10 14:22
  */
 @Slf4j
@@ -33,32 +33,32 @@ public class DhtHandler implements NioHandler {
     private List<IDhtHandlerChain> handlerChains;
     private Collection<IDhtQueryChain> queryChains;
     private Collection<IDhtUnknownChain> unknownChains;
-    private ApplicationContext ac;
-    private ByteBuffer buffer = ByteBuffer.allocate(1024 * 64);
-    private ActionRecord record;
+    private final ApplicationContext applicationContext;
+    private final ByteBuffer buffer = ByteBuffer.allocate(1024 * 64);
+    private final ActionRecord record;
 
     @Autowired
-    public DhtHandler(ApplicationContext ac,
+    public DhtHandler(ApplicationContext applicationContext,
                       ActionRecord record) {
-        this.ac = ac;
+        this.applicationContext = applicationContext;
         this.record = record;
     }
 
     /**
-     * 初始化责任链
+     * init chains
      */
     @PostConstruct
     public void init() {
-        handlerChains = ac.getBeansOfType(IDhtHandlerChain.class).values()
+        handlerChains = applicationContext.getBeansOfType(IDhtHandlerChain.class).values()
                 .stream()
                 .filter(IBaseDhtChain::enable)
                 .sorted(Comparator.comparingInt(IDhtHandlerChain::weights).reversed())
                 .collect(Collectors.toList());
-        queryChains = ac.getBeansOfType(IDhtQueryChain.class).values()
+        queryChains = applicationContext.getBeansOfType(IDhtQueryChain.class).values()
                 .stream()
                 .filter(IBaseDhtChain::enable)
                 .collect(Collectors.toList());
-        unknownChains = ac.getBeansOfType(IDhtUnknownChain.class).values()
+        unknownChains = applicationContext.getBeansOfType(IDhtUnknownChain.class).values()
                 .stream()
                 .filter(IBaseDhtChain::enable)
                 .collect(Collectors.toList());

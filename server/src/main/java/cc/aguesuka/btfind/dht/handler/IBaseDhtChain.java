@@ -1,7 +1,7 @@
 package cc.aguesuka.btfind.dht.handler;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/25 12:36
  */
 public interface IBaseDhtChain {

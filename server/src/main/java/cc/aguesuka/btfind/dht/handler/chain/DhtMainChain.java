@@ -19,15 +19,15 @@ import java.util.Random;
  * http://www.bittorrent.org/beps/bep_0005.html
  * response message for other peer query the server
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/11 21:56
  */
 @Component
 public class DhtMainChain implements IDhtQueryChain, IDhtHandlerChain {
-    private Queue<KrpcMessage> messagesQueue = new LinkedList<>();
-    private DhtServerConfig config;
-    private Random random = new SecureRandom();
-    private byte[] token = new byte[2];
+    private final Queue<KrpcMessage> messagesQueue = new LinkedList<>();
+    private final DhtServerConfig config;
+    private final Random random = new SecureRandom();
+    private final byte[] token = new byte[2];
 
     @Autowired
     public DhtMainChain(DhtServerConfig config) {

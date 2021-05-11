@@ -5,7 +5,7 @@ import cc.aguesuka.btfind.dht.beans.KrpcMessage;
 import java.util.NoSuchElementException;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/11 19:34
  */
 public interface IDhtHandlerChain extends IBaseDhtChain {

@@ -3,11 +3,11 @@ package cc.aguesuka.bencode;
 /**
  * 整数类型,实际取值范围和java int 不同,不可变对象
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/6/30 17:02
  */
 public final class BencodeInteger extends Number implements IBencode {
-    private long value;
+    private final long value;
 
     BencodeInteger(String val) {
         value = Long.parseLong(val);

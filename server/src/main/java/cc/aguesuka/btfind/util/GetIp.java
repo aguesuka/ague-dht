@@ -6,9 +6,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * the util parser ip byte array to string
+ * the command util parser ip byte array to string
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/11 18:07
  */
 public class GetIp {

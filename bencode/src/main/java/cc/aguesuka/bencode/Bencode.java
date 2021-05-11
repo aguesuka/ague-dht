@@ -37,12 +37,12 @@ import java.nio.charset.StandardCharsets;
  * <p>
  * bencode 没有定义null,但是在处理时不做校验,所以解析成对象时,map的最后一个value可能为null,编码为bencode时,null视为空字符串
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/6/26 17:47
  */
 public final class Bencode {
 
-    private static Charset charset = StandardCharsets.UTF_8;
+    private static final Charset charset = StandardCharsets.UTF_8;
 
     static Charset getCharset() {
         return charset;

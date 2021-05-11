@@ -3,7 +3,7 @@ package cc.aguesuka.btfind.connection;
 import java.nio.channels.SelectionKey;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/4 13:52
  */
 public interface NioHandler {

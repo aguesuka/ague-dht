@@ -1,11 +1,12 @@
 package cc.aguesuka.bencode.util;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
  * 十六进制工具类 oracle jdk 有,open jdk 需要自己写
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/7/11 23:25
  */
 public class HexUtil {

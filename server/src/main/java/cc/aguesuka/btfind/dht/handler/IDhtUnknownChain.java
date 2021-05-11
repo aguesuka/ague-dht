@@ -3,7 +3,7 @@ package cc.aguesuka.btfind.dht.handler;
 import cc.aguesuka.btfind.dht.beans.KrpcMessage;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/11 19:49
  */
 public interface IDhtUnknownChain extends IBaseDhtChain{

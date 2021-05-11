@@ -1,7 +1,7 @@
 package cc.aguesuka.bencode;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/3 17:23
  */
 class BencodeToken {

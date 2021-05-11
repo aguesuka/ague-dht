@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.security.SecureRandom;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/1 10:31
  */
 public class BencodeListTest {

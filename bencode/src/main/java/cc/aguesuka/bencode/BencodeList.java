@@ -3,7 +3,7 @@ package cc.aguesuka.bencode;
 import java.util.ArrayList;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/6/30 16:58
  */
 @SuppressWarnings({"WeakerAccess", "unused"})

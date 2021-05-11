@@ -15,15 +15,15 @@ import java.nio.channels.SelectionKey;
 /**
  * bootstrap
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/9 13:39
  */
 @Slf4j
 @Component
 public class Bootstrap {
-    private NioEventLoop nioEventLoop;
-    private DhtServerConfig config;
-    private DhtHandler dhtHandler;
+    private final NioEventLoop nioEventLoop;
+    private final DhtServerConfig config;
+    private final DhtHandler dhtHandler;
 
     @Autowired
     public Bootstrap(NioEventLoop nioEventLoop,

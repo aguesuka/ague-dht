@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/9 12:33
  */
 public class Bep0042ImplTest {

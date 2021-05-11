@@ -8,7 +8,7 @@ import java.util.zip.CRC32C;
 /**
  * http://www.bittorrent.org/beps/bep_0042.html
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/9 12:30
  */
 class Bep0042Impl {

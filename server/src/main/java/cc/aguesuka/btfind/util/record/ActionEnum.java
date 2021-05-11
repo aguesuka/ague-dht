@@ -1,9 +1,10 @@
 package cc.aguesuka.btfind.util.record;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/4 21:22
  */
+@SuppressWarnings("unused")
 public enum ActionEnum {
     /**
      * action type
@@ -45,7 +46,7 @@ public enum ActionEnum {
     MD_SAVE(""),
     MD_RECV_PEER_INFO(""),
     ;
-    private String description;
+    private final String description;
 
     ActionEnum(String description) {
         this.description = description;

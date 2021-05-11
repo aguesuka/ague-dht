@@ -3,7 +3,7 @@ package cc.aguesuka.bencode;
 import java.nio.ByteBuffer;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/6/30 16:56
  */
 public interface IBencode {

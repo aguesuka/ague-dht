@@ -11,9 +11,10 @@ package cc.aguesuka.btfind.dht;
  * <p>
  * KRPC 消息的类型是 BencodeMap; key 用 string 表示 value 用 String 表示.
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/8/29 15:06
  */
+@SuppressWarnings("unused")
 public class KrpcToken {
     public static final int ID_LENGTH = 20;
     /**

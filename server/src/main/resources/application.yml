@@ -4,9 +4,6 @@ logging:
   file: logs/log.log
 
 spring:
-  datasource:
-    # use absolute path
-    url: jdbc:sqlite:C:\java\bt-find\server\src\sql\database
   aop:
     auto: true
     proxy-target-class: true

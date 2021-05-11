@@ -11,7 +11,7 @@ import java.util.Arrays;
 /**
  * 数组包装类,不可变对象,不能包装null
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/6/30 16:59
  */
 public final class BencodeByteArray implements IBencode, Comparable<BencodeByteArray> {
@@ -19,7 +19,7 @@ public final class BencodeByteArray implements IBencode, Comparable<BencodeByteA
     public static BencodeByteArray empty(){
         return BENCODE_BYTE_ARRAY;
     }
-    private byte[] data;
+    private final byte[] data;
 
     public BencodeByteArray(byte[] data) {
         this.data = data.clone();

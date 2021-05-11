@@ -16,7 +16,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/9 12:19
  */
 @Component
@@ -26,7 +26,7 @@ public class NioEventLoop implements AutoCloseable {
     @Setter
     private volatile boolean isLoop;
     private CountDownLatch countDownLatch;
-    private ActionRecord record;
+    private final ActionRecord record;
     @Getter
     private Selector selector;
     public NioEventLoop(ActionRecord record) {
@@ -112,7 +112,11 @@ public class NioEventLoop implements AutoCloseable {
     public void close() throws InterruptedException {
         stop();
         selector.wakeup();
-        countDownLatch.await(1000, TimeUnit.SECONDS);
-        log.error("loop closed");
+        boolean notTimeout = countDownLatch.await(1000, TimeUnit.SECONDS);
+        if(!notTimeout){
+            log.warn("loop closed");
+        }else{
+            log.error("close timeout");
+        }
     }
 }

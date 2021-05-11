@@ -4,7 +4,9 @@ import cc.aguesuka.btfind.util.DhtServerConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,24 +15,24 @@ import java.util.concurrent.TimeUnit;
 /**
  * aggregation log
  *
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/4 17:37
  */
 @Component
 @Slf4j
 public class ActionRecord {
-    private DhtServerConfig config;
-    private Map<ActionEnum, Double> sumMap;
+    private final DhtServerConfig config;
+    private final Map<ActionEnum, Double> sumMap;
     private Map<ActionEnum, Double> lastTimeMap;
     private Map<ActionEnum, Double> nowTimeMap;
-    private long lastTime;
-    private long startTime;
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+    private LocalDateTime lastTime;
+    private final LocalDateTime startTime;
+
 
     public ActionRecord(DhtServerConfig config) {
         this.config = config;
-        startTime = System.currentTimeMillis();
-        lastTime = System.currentTimeMillis();
+        startTime = LocalDateTime.now();
+        lastTime = LocalDateTime.now();
         nowTimeMap = new EnumMap<>(ActionEnum.class);
         lastTimeMap = new EnumMap<>(ActionEnum.class);
         sumMap = new EnumMap<>(ActionEnum.class);
@@ -43,7 +45,7 @@ public class ActionRecord {
 
     public void doRecord(ActionEnum action, double count) {
         putSumMap(action, count);
-        checkChangeMap();
+        onUpdate();
         putLastTimeMap(action, count);
     }
 
@@ -63,15 +65,16 @@ public class ActionRecord {
         }
     }
 
-    private void checkChangeMap() {
+    private void onUpdate() {
         int recordTime = config.getRecordTime();
-        long cost = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - lastTime);
+        long cost = TimeUnit.SECONDS.convert(Duration.between(lastTime, LocalDateTime.now()));
         if (cost >= recordTime) {
             nowTimeMap = new HashMap<>(lastTimeMap.size());
-            lastTime = System.currentTimeMillis();
+            lastTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
             log.warn("\n from last time {} record{} \n from start time {} record{}",
-                    sdf.format(lastTime), lastTimeMap.toString(),
-                    sdf.format(startTime), sumMap.toString());
+                    lastTime.format(formatter), lastTimeMap.toString(),
+                    startTime.format(formatter), sumMap.toString());
             lastTimeMap = nowTimeMap;
         }
     }

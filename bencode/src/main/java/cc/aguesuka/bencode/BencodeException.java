@@ -1,11 +1,11 @@
 package cc.aguesuka.bencode;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/1 23:15
  */
 public final class BencodeException extends RuntimeException {
-    private Object data;
+    private final Object data;
 
     BencodeException(Object data, Throwable cause) {
         super(cause);

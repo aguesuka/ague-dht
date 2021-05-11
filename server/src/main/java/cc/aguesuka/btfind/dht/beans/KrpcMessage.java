@@ -8,7 +8,7 @@ import lombok.Data;
 import java.net.SocketAddress;
 
 /**
- * @author :yangmingyuxing
+ * @author :aguesuka
  * 2019/9/11 13:10
  */
 @Data
