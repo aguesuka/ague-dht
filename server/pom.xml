@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <artifactId>server</artifactId>
     <properties>
-        <sprint-boot.version>2.1.6.RELEASE</sprint-boot.version>
+        <sprint-boot.version>2.2.11.RELEASE</sprint-boot.version>
     </properties>
     <dependencies>
         <dependency>
